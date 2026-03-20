@@ -203,14 +203,24 @@
     }
     .card:hover .card-img img.bolsa-img { transform: scale(1.05); }
 
-    /* Dosis badge */
-    .card-dosis {
-      position: absolute; top: 10px; left: 10px;
-      background: var(--verde); color: #fff;
-      font-size: 0.65rem; font-weight: 900; letter-spacing: .5px;
-      padding: 3px 8px; border-radius: 3px;
-      text-transform: uppercase;
-    }
+ /* Dosis badge — fix posición */
+.card-dosis {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--verde); color: #fff;
+  font-size: 0.65rem; font-weight: 900; letter-spacing: .5px;
+  padding: 3px 8px; border-radius: 3px;
+  text-transform: uppercase;
+  z-index: 2;  /* ← agregá esto */
+}
+
+/* Imagen con padding-top para no tapar el badge */
+.card-img {
+  height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff;
+  padding: 2.2rem 1rem 1rem;  /* ← más padding arriba */
+  position: relative;
+}
 
     .card-body { padding: .8rem 1rem; flex: 1; }
     .card-nombre {
