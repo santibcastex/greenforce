@@ -499,7 +499,7 @@
     <span class="filtros-count" id="count-productos">5 productos</span>
     <div class="filtros-sort">
       Ordenar por:
-      <select onchange="ordenar(this.value)">
+      <select id="sort-select">
         <option value="default">Destacados</option>
         <option value="precio-asc">Precio: menor a mayor</option>
         <option value="precio-desc">Precio: mayor a menor</option>
@@ -798,4 +798,26 @@
 
     // Cambiar número real acá:
     const NUM_WA = '5491112345678';
-    window.open(`https://wa.me/${NUM_WA}?t
+    window.open(`https://wa.me/${NUM_WA}?text=${msg}`, '_blank');
+
+    // Mostrar modal y resetear
+    document.getElementById('modal-msg').textContent =
+      `Gracias ${nombre}! Tu pedido fue enviado por WhatsApp. Te confirmamos a la brevedad.`;
+    document.getElementById('modal').classList.add('show');
+    carrito = {};
+    renderCarrito();
+    e.target.reset();
+  }
+
+  function cerrarModal() {
+    document.getElementById('modal').classList.remove('show');
+  }
+
+  // ─── INIT ───
+  renderProductos();
+  document.getElementById('sort-select').addEventListener('change', function() {
+    ordenar(this.value);
+  });
+</script>
+</body>
+</html>
