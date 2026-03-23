@@ -27,7 +27,8 @@ export default async function handler(req, res) {
       html: `
         <h2>🌿 Nuevo pedido Green Force™</h2>
         <p><strong>Cliente:</strong> ${cliente.nombre} ${cliente.apellido}</p>
-        <p><strong>Tel:</strong> ${cliente.tel}</p>
+<p><strong>Email:</strong> ${cliente.email}</p>
+<p><strong>Tel:</strong> ${cliente.tel}</p>
         <p><strong>Dirección:</strong> ${cliente.direccion}, ${cliente.provincia}</p>
         
         <h3>Productos:</h3>
