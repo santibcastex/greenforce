@@ -759,7 +759,7 @@
       totalItems += it.qty;
       return `
         <div class="item-carrito">
-          <span>${it.emoji} <span class="nombre">${it.nombre}</span> x${it.qty}</span>
+          <span><span class="nombre">${it.nombre}</span> x${it.qty}</span>
           <span class="sub">$${sub.toLocaleString('es-AR')}</span>
         </div>`;
     }).join('');
