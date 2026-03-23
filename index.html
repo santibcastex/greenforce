@@ -803,7 +803,7 @@ fetch('/api/enviar-pedido', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    cliente: { nombre, apellido, tel, email, direccion: dir, provincia: prov },
+    cliente: { nombre, apellido, email: document.getElementById('f-email').value, tel, direccion: dir, provincia: prov },
     productos,
     total,
     notas
