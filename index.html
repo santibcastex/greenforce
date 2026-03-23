@@ -821,7 +821,7 @@ fetch('/api/enviar-pedido', {
 .then(res => res.json())
 .then(data => {
   if(data.success) {
-    alert('✅ Pedido enviado a greenforcearg@gmail.com');
+   // alert('✅ Pedido enviado a greenforcearg@gmail.com');
     document.getElementById('carrito-items').innerHTML = '';
     carrito = {};
     actualizarCarrito();
@@ -832,7 +832,7 @@ fetch('/api/enviar-pedido', {
 
     // Mostrar modal y resetear
     document.getElementById('modal-msg').textContent =
-      `Gracias ${nombre}! Tu pedido fue enviado por WhatsApp. Te confirmamos a la brevedad.`;
+      `Gracias ${nombre}! Tu pedido fue enviado a Green Force. Te confirmamos a la brevedad.`;
     document.getElementById('modal').classList.add('show');
     carrito = {};
     renderCarrito();
