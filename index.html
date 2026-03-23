@@ -798,16 +798,37 @@
     const dir = document.getElementById('f-dir').value;
     const prov = document.getElementById('f-prov').value;
 
-    // Armar mensaje WhatsApp
-    const items = Object.values(carrito);
-    let detalle = items.map(i => `• ${i.nombre} x${i.qty} = $${(i.precio*i.qty).toLocaleString('es-AR')}`).join('%0A');
-    const total = items.reduce((a,i)=>a+i.precio*i.qty,0);
-    const notas = document.getElementById('f-notas').value || '-';
-    const msg = `🌿 *Nuevo pedido Green Force™*%0A%0A*Cliente:* ${nombre} ${apellido}%0A*Tel:* ${tel}%0A*Dirección:* ${dir}, ${prov}%0A%0A*Productos:*%0A${detalle}%0A%0A*Total:* $${total.toLocaleString('es-AR')}%0A*Notas:* ${notas}`;
+    // Enviar pedido por email
+const items = Object.values(carrito);
+const productos = items.map(i => ({
+  nombre: i.nombre,
+  qty: i.qty,
+  precio: i.precio
+}));
+const total = items.reduce((a,i)=>a+i.precio*i.qty,0);
+const notas = document.getElementById('f-notas').value || '-';
 
-    // Cambiar número real acá:
-    const NUM_WA = '5491112345678';
-    window.open(`https://wa.me/${NUM_WA}?text=${msg}`, '_blank');
+fetch('/api/enviar-pedido', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    cliente: { nombre, apellido, tel, direccion: dir, provincia: prov },
+    productos,
+    total,
+    notas
+  })
+})
+.then(res => res.json())
+.then(data => {
+  if(data.success) {
+    alert('✅ Pedido enviado a greenforcearg@gmail.com');
+    document.getElementById('carrito-items').innerHTML = '';
+    carrito = {};
+    actualizarCarrito();
+  } else {
+    alert('❌ Error: ' + data.error);
+  }
+})
 
     // Mostrar modal y resetear
     document.getElementById('modal-msg').textContent =
