@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 
 export interface Product {
   id: string;
@@ -32,9 +32,58 @@ interface CartContextType {
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
+const CART_STORAGE_KEY = "greenforce-cart";
+
+// Función para serializar el carrito
+const serializeCart = (items: CartItem[]): string => {
+  return JSON.stringify(items.map(item => ({
+    product: {
+      id: item.product.id,
+      name: item.product.name,
+      formula: item.product.formula,
+      description: item.product.description,
+      longDescription: item.product.longDescription,
+      price: item.product.price,
+      unit: item.product.unit,
+      badge: item.product.badge,
+      benefits: item.product.benefits,
+      idealFor: item.product.idealFor,
+      dose: item.product.dose,
+      image: item.product.image,
+      tag: item.product.tag
+    },
+    quantity: item.quantity
+  })));
+};
+
+// Función para deserializar el carrito desde localStorage
+const deserializeCart = (data: string | null): CartItem[] => {
+  if (!data) return [];
+  try {
+    return JSON.parse(data);
+  } catch (e) {
+    console.error("Error deserializing cart:", e);
+    return [];
+  }
+};
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useState<CartItem[]>(() => {
+    // Inicializar desde localStorage en el cliente
+    if (typeof window !== "undefined") {
+      return deserializeCart(localStorage.getItem(CART_STORAGE_KEY));
+    }
+    return [];
+  });
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Sincronizar con localStorage cuando cambia el carrito
+  useEffect(() => {
+    setIsHydrated(true);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(CART_STORAGE_KEY, serializeCart(items));
+    }
+  }, [items]);
 
   const addItem = useCallback((product: Product, quantity: number) => {
     if (quantity <= 0) return;
@@ -67,10 +116,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     );
   }, [removeItem]);
 
-  const clearCart = useCallback(() => setItems([]), []);
+  const clearCart = useCallback(() => {
+    setItems([]);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(CART_STORAGE_KEY);
+    }
+  }, []);
 
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = items.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
+
+  // Mostrar contenido solo después de hidratar desde localStorage
+  if (!isHydrated) {
+    return (
+      <CartContext.Provider value={{
+        items: [], addItem, removeItem, updateQuantity, clearCart,
+        totalItems: 0, totalPrice: 0
+      }}>
+        {children}
+      </CartContext.Provider>
+    );
+  }
 
   return (
     <CartContext.Provider value={{
