@@ -1,25 +1,51 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+/*
+ * GREEN FORCE™ – Home Page
+ * Style: Neo-Ruralismo Contemporáneo
+ * Integrates all sections: Hero, Products, Benefits, HowItWorks, Testimonials, FAQ, Order, Footer
  */
+
+import { useState } from "react";
+import { CartProvider } from "@/contexts/CartContext";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import ProductsSection from "@/components/ProductsSection";
+import BenefitsSection from "@/components/BenefitsSection";
+import HowItWorksSection from "@/components/HowItWorksSection";
+import FieldBannerSection from "@/components/FieldBannerSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
+import OrderSection from "@/components/OrderSection";
+import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
+import FloatingCartButton from "@/components/FloatingCartButton";
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const scrollToOrder = () => {
+    document.querySelector("#pedido")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
+    <CartProvider>
+      <div className="min-h-screen">
+        <Navbar onCartClick={() => setCartOpen(true)} />
+        <HeroSection />
+        <ProductsSection />
+        <BenefitsSection />
+        <HowItWorksSection />
+        <FieldBannerSection />
+        <TestimonialsSection />
+        <FAQSection />
+        <OrderSection />
+        <Footer />
+        <CartDrawer
+          open={cartOpen}
+          onClose={() => setCartOpen(false)}
+          onCheckout={scrollToOrder}
+        />
+        <FloatingCartButton onClick={() => setCartOpen(true)} />
+      </div>
+    </CartProvider>
   );
 }
