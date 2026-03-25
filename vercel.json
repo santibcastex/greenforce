@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "env": {
+    "VITE_APP_TITLE": "Green Force™ – Fertilizantes Premium",
+    "VITE_APP_LOGO": "https://cdn.example.com/logo.png"
+  }
+}
