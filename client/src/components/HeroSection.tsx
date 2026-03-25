@@ -8,7 +8,7 @@
 import { ChevronDown } from "lucide-react";
 import { useCounter } from "@/hooks/useCounter";
 
-const HERO_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663475074413/UpJxDhvWdWkxE3jrcBS6yZ/hero-campo-argentino-RMekbfk3RjhDZkG6DdTCYN.webp";
+const HERO_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663475074413/UpJxDhvWdWkxE3jrcBS6yZ/hero-cesped-perfecto-KR4TMhmV5DvKZ5zWAjzbmg.webp";
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const { count, ref } = useCounter(value, 2000, "");

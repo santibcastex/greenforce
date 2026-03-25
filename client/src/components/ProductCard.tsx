@@ -57,13 +57,12 @@ export default function ProductCard({ product }: ProductCardProps) {
             ★ {product.badge}
           </div>
         )}
-        {/* Product visual */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="w-24 h-28 bg-[#1C3A0E] rounded-lg flex flex-col items-center justify-center shadow-lg">
-            <div className="text-[#E8B84B] font-[Barlow_Condensed] font-black text-xl leading-none">{product.formula.split("+")[0].trim()}</div>
-            <div className="text-white/60 font-[Nunito_Sans] text-xs mt-1">{product.name}</div>
-          </div>
-        </div>
+        {/* Product visual - Logo */}
+        <img
+          src={product.image}
+          alt={`${product.name} ${product.formula}`}
+          className="w-40 h-40 object-contain"
+        />
       </div>
 
       {/* Content */}

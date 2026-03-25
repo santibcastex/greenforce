@@ -1,5 +1,7 @@
 import { Product } from "@/contexts/CartContext";
 
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663475074413/UpJxDhvWdWkxE3jrcBS6yZ/LogoGreenForce-9mKzV7tXqZ2pJ8kL5nM3oP.png";
+
 export const PRODUCTS: Product[] = [
   {
     id: "urea-46-0-0",
@@ -19,7 +21,7 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Rye Grass, Bermuda y Grama Bahiana",
     dose: "1 kg / 100 m²",
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop"
+    image: LOGO_URL
   },
   {
     id: "dap-18-46-0",
@@ -38,7 +40,7 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Siembra nueva y trasplantes",
     dose: "1 kg / 100 m²",
-    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop"
+    image: LOGO_URL
   },
   {
     id: "map-11-52-0",
@@ -58,7 +60,7 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Desarrollo radicular intensivo",
     dose: "1 kg / 100 m²",
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop"
+    image: LOGO_URL
   },
   {
     id: "micro-12-6-4",
@@ -78,7 +80,7 @@ export const PRODUCTS: Product[] = [
     ],
     idealFor: "Mantenimiento integral de jardín",
     dose: "1 kg / 400 m²",
-    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop"
+    image: LOGO_URL
   }
 ];
 
