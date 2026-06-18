@@ -15,7 +15,6 @@
       --blanco: #ffffff;
       --gris-f: #f4f4f2;
       --menta: #7dd4a4;
-      --verde-dark: var(--verde-dark);
     }
 
     body {
@@ -179,14 +178,14 @@
       transition: background .15s;
     }
     .qty-ctrl button:hover { background: #e0e0e0; }
-    .qty-ctrl .qty-num { width: 28px; text-align: center; font-size: 0.9rem; font-weight: 700; }
+    .qty-ctrl span { width: 28px; text-align: center; font-size: 0.9rem; font-weight: 700; }
     .btn-agregar {
       background: var(--verde); color: #fff; border: none;
       padding: 0 14px; height: 30px; font-family: 'Archivo', sans-serif;
       font-size: 0.78rem; font-weight: 700; cursor: pointer; letter-spacing: 0.5px;
       transition: background .2s;
     }
-    .btn-agregar:hover { background: var(--verde-dark); }
+    .btn-agregar:hover { background: #0a4522; }
 
     /* COMO FUNCIONA */
     #como { padding: 100px 0; background: var(--verde); }
@@ -266,9 +265,6 @@
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus { border-color: var(--verde); }
-    .form-group input:focus-visible,
-    .form-group select:focus-visible,
-    .form-group textarea:focus-visible { outline: 2px solid var(--verde); outline-offset: 1px; }
     .form-group textarea { min-height: 90px; resize: vertical; }
     .form-group select option { background: #fff; }
     .btn-enviar {
@@ -277,7 +273,7 @@
       font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
       cursor: pointer; transition: background .2s; margin-top: 8px;
     }
-    .btn-enviar:hover { background: var(--verde-dark); }
+    .btn-enviar:hover { background: #0a4522; }
 
     /* FOOTER */
     footer { background: var(--negro); padding: 64px 0 0; border-top: 2px solid var(--verde); }
@@ -312,7 +308,7 @@
       letter-spacing: 0.5px; border: 2px solid rgba(255,255,255,0.2);
       transition: background .2s, transform .15s;
     }
-    #cart-float:hover { background: var(--verde-dark); transform: scale(1.04); }
+    #cart-float:hover { background: #0a4522; transform: scale(1.04); }
     #cart-count {
       background: var(--menta); color: var(--negro); border-radius: 50%;
       width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
@@ -341,7 +337,7 @@
       font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 0.85rem;
       letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background .2s;
     }
-    .modal-box button:hover { background: var(--verde-dark); }
+    .modal-box button:hover { background: #0a4522; }
 
     /* SCROLL ANIMATIONS */
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -754,5 +750,4 @@ fetch('/api/enviar-pedido', {
 </script>
 </body>
 </html>
-
 
