@@ -464,14 +464,15 @@
 
 <!-- PEDIDO -->
 <section id="pedido">
-  <div class="section-header fade-in">
-    <span class="eyebrow">Pedidos</span>
+  <div class="section-title">
     <h2>Hacer un pedido</h2>
+    <p>Revisá tu selección y completá tus datos</p>
+    <div class="divider"></div>
   </div>
   <div class="pedido-wrapper">
     <!-- Resumen carrito -->
     <div class="resumen">
-      <h3>Tu carrito</h3>
+      <h3>🛒 Tu Carrito</h3>
       <div id="carrito-items">
         <p class="carrito-vacio">Todavía no agregaste productos.</p>
       </div>
@@ -479,12 +480,12 @@
         <span>Total estimado:</span>
         <span class="total-amt" id="total-monto">$0</span>
       </div>
-      <button class="btn-limpiar" onclick="limpiarCarrito()">Vaciar carrito</button>
+      <button class="btn-limpiar" onclick="limpiarCarrito()">🗑 Vaciar carrito</button>
     </div>
 
     <!-- Formulario -->
     <div class="form-pedido">
-      <h3>Tus datos</h3>
+      <h3>📝 Tus Datos</h3>
       <form id="form-order" onsubmit="enviarPedido(event)">
         <div class="form-row">
           <div class="form-group">
@@ -519,7 +520,7 @@
           <label>Notas adicionales</label>
           <textarea id="f-notas" placeholder="Horario de entrega, portón de acceso, etc."></textarea>
         </div>
-        <button type="submit" class="btn-enviar">Enviar pedido</button>
+        <button type="submit" class="btn-enviar">📦 Enviar Pedido</button>
       </form>
     </div>
   </div>
